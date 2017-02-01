@@ -90,7 +90,8 @@ class ParallelRunnerCommand extends BehatCommand
         foreach ($this->getFeaturesPaths() as $path) {
             $features = $gherkin->load((string) $path);
             foreach ($features as $feature) {
-                $output_file = $this->getTestDir() . '/plan/' . str_replace('/', '_', $feature->getFile());
+                $speedPrefix = $feature->hasTag('slow') ? '1': '2';
+	              $output_file = $this->getTestDir() . '/plan/' . $speedPrefix . str_replace('/', '_', $feature->getFile());
                 file_put_contents($output_file, $feature->getFile());
             }
         }
