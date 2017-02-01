@@ -316,7 +316,7 @@ class ParallelRunnerCommand extends BehatCommand
     function exceptionHandler($exception)
     {
         $output_file = $this->getTestDir() . '/results/' . $this->workerID . '.exception';
-        file_put_contents($output_file, "Worker exception (workerID={$this->workerID}): " . $exception->getMessage());
+        file_put_contents($output_file, "Worker exception (workerID={$this->workerID}): " . $exception->getMessage() . " stacktrace: " . $exception->getTraceAsString());
     }
 
     /**
